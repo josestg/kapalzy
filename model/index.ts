@@ -61,3 +61,12 @@ export interface FetchableState<T> {
   error: Error | null;
   state: T;
 }
+
+export const ScreenNames = {
+  Home: "Home",
+  Orders: "Orders",
+  Cancellations: "Cancellations",
+  Others: "Others",
+};
+
+export type ScreenNameKeys = keyof typeof ScreenNames;

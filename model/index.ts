@@ -67,6 +67,9 @@ export const ScreenNames = {
   Orders: "Orders",
   Cancellations: "Cancellations",
   Others: "Others",
+  HomeForm: "Forms",
+  HomePreview: "Previews",
+  HomeSummary: "Summaries",
 };
 
 export type ScreenNameKeys = keyof typeof ScreenNames;

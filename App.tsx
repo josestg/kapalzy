@@ -5,7 +5,10 @@ import { Provider as ReduxProvider } from "react-redux";
 import { getIconName } from "./helper/icons";
 import { ScreenNameKeys, ScreenNames } from "./model";
 import reduxStore from "./redux";
+import { CancellationScreen } from "./screen/cancellation";
 import { HomeScreen } from "./screen/home";
+import { OrderScreen } from "./screen/orders";
+import { OthersScreen } from "./screen/others";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +26,12 @@ export default function App() {
           })}
         >
           <Tab.Screen name={ScreenNames["Home"]} component={HomeScreen} />
+          <Tab.Screen name={ScreenNames["Orders"]} component={OrderScreen} />
+          <Tab.Screen
+            name={ScreenNames["Cancellations"]}
+            component={CancellationScreen}
+          />
+          <Tab.Screen name={ScreenNames["Others"]} component={OthersScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </ReduxProvider>

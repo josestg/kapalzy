@@ -32,6 +32,12 @@ export function PreviewSubScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <Text>Loading...</Text>
+        <Button
+          title={"Kembali"}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
       </SafeAreaView>
     );
   }

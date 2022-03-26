@@ -8,10 +8,11 @@ import {
 import { useEffect, useState } from "react";
 import { ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getShipByID } from "../../api/ticket.api";
 import { Ship } from "../../model";
 import { RootState } from "../../redux";
+import { addOrder } from "../../redux/reducers/ticket";
 import { HomeStackParamList } from "../../router";
 import {
   Button,
@@ -33,11 +34,12 @@ export function SummarySubScreen() {
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
 
+  const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
   const [ship, setShip] = useState<Ship | undefined>(undefined);
 
   const { params } = useRoute<RouteProp<HomeStackParamList, "HomePreview">>();
-  const { passengers, derpature, arrival, serviceClass } = useSelector(
+  const { derpature, arrival, serviceClass } = useSelector(
     (root: RootState) => root.order
   );
 
@@ -53,8 +55,6 @@ export function SummarySubScreen() {
     );
   }
 
-  const price = ship.classes[serviceClass || "economy"].price;
-
   const genders = [
     { value: "male", label: "Male" },
     { value: "female", label: "Female" },
@@ -62,6 +62,7 @@ export function SummarySubScreen() {
 
   const onSubmit = () => {
     setModalVisible(true);
+    dispatch(addOrder(params.ticket));
   };
 
   const onClose = () => {
@@ -106,6 +107,7 @@ export function SummarySubScreen() {
             label="Nama Lengkap"
             placeholder="Nama anda..."
             onChangeText={setName}
+            value={name}
             iconFactory={(focused) => <Icon name={"ship"} focused={focused} />}
           />
           <InputOptions

@@ -1,4 +1,5 @@
 import { Button } from "./button";
+import { DeleteConfirm } from "./delete-confirm";
 import { Icon } from "./icon";
 import { InputDate } from "./input-date";
 import { InputOptions } from "./input-option";
@@ -15,4 +16,5 @@ export {
   InputDate,
   TicketCard,
   Modal,
+  DeleteConfirm,
 };

@@ -3,6 +3,8 @@ import { FetchableState, Ticket } from "../../model";
 
 interface State<T> extends FetchableState<T> {
   searchResult: T;
+  ordered: T;
+  canceled: T;
 }
 
 const initialState: State<Ticket[]> = {
@@ -10,6 +12,8 @@ const initialState: State<Ticket[]> = {
   error: null,
   state: [],
   searchResult: [],
+  ordered: [],
+  canceled: [],
 };
 
 type SearchPayload = {
@@ -30,6 +34,21 @@ const slices = createSlice({
     },
     setError: (state, action: PayloadAction<Error | null>) => {
       state.error = action.payload;
+    },
+    addOrder: (state, action: PayloadAction<Ticket>) => {
+      const found = state.ordered.find((t) => t.id === action.payload.id);
+      if (!found) {
+        state.ordered.push(action.payload);
+      }
+    },
+    cancelOrder: (state, action: PayloadAction<Ticket>) => {
+      const foundIndex = state.ordered.findIndex(
+        (t) => t.id === action.payload.id
+      );
+      if (foundIndex !== -1) {
+        const removed = state.ordered.splice(foundIndex, 1);
+        state.canceled.push(removed[0]);
+      }
     },
     search: (state, action: PayloadAction<SearchPayload>) => {
       const { arrivalPortId, departureDate, departurePortId } = action.payload;
@@ -63,6 +82,8 @@ export const {
   setError,
   setLoading,
   search: searchTicket,
+  addOrder,
+  cancelOrder,
 } = slices.actions;
 
 export default slices.reducer;

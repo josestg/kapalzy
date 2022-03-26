@@ -15,7 +15,7 @@ const initialState: State = {
   derpature: undefined,
   arrival: undefined,
   derpatureDate: undefined,
-  passengers: 0,
+  passengers: 1,
   serviceClass: "economy",
   status: "pending",
   tiketId: "",

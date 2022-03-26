@@ -1,4 +1,7 @@
 export type HomeStackParamList = {
+  HomeSearch: {
+    target: "derpature" | "arrival";
+  };
   HomeForm: undefined;
   HomePreview: undefined;
   HomeSummary: undefined;

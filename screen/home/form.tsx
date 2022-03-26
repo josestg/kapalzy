@@ -5,13 +5,22 @@ import { useSelector } from "react-redux";
 import { ClassType, DefaultServiceClasses, ServiceClass } from "../../model";
 import { RootState } from "../../redux";
 import { HomeStackParamList } from "../../router";
-import { Button, Icon, DisableTextInput, InputOptions } from "../../shared";
+import {
+  Button,
+  Icon,
+  DisableTextInput,
+  InputOptions,
+  InputDate,
+} from "../../shared";
 import { OptionItem } from "../../shared/input-option";
 
 export const FormSubScreen: React.FC = () => {
   const [selectedService, setSelectedService] = useState<
     OptionItem | undefined
   >(undefined);
+
+  const [selectedDate, setSelectedDate] = useState<string>("");
+
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
 
   const { derpature, arrival } = useSelector((root: RootState) => root.order);
@@ -53,6 +62,13 @@ export const FormSubScreen: React.FC = () => {
           options={serviceClases}
           selected={selectedService}
           onSelect={setSelectedService}
+        />
+        <InputDate
+          label="Taggal Keberangkatan"
+          mode="date"
+          iconFactory={(focused) => <Icon focused={focused} name="ship" />}
+          onChange={(d) => setSelectedDate(d.toLocaleDateString())}
+          value={selectedDate}
         />
         <Button title="Buat Tiket" onPress={() => handleCreateTicket()} />
       </View>

@@ -3,14 +3,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider as ReduxProvider } from "react-redux";
 import { getIconName } from "./helper/icons";
-import { ScreenNameKeys, ScreenNames } from "./model";
+import { ScreenNameKeys } from "./model";
 import reduxStore from "./redux";
+import { RootTabParamList } from "./router";
 import { CancellationScreen } from "./screen/cancellation";
 import { HomeScreen } from "./screen/home";
 import { OrderScreen } from "./screen/orders";
 import { OthersScreen } from "./screen/others";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export default function App() {
   return (
@@ -25,13 +26,10 @@ export default function App() {
             },
           })}
         >
-          <Tab.Screen name={ScreenNames["Home"]} component={HomeScreen} />
-          <Tab.Screen name={ScreenNames["Orders"]} component={OrderScreen} />
-          <Tab.Screen
-            name={ScreenNames["Cancellations"]}
-            component={CancellationScreen}
-          />
-          <Tab.Screen name={ScreenNames["Others"]} component={OthersScreen} />
+          <Tab.Screen name={"Home"} component={HomeScreen} />
+          <Tab.Screen name={"Orders"} component={OrderScreen} />
+          <Tab.Screen name={"Cancellations"} component={CancellationScreen} />
+          <Tab.Screen name={"Others"} component={OthersScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </ReduxProvider>

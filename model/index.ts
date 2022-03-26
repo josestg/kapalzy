@@ -55,3 +55,9 @@ export type Ticket = {
   departureDate: string;
   derpatureTime: string[];
 };
+
+export interface FetchableState<T> {
+  loading: boolean;
+  error: Error | null;
+  state: T;
+}

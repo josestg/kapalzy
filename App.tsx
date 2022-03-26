@@ -1,15 +1,12 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Provider as ReduxProvider } from "react-redux";
 import reduxStore from "./redux";
+import { HomeScreen } from "./screen/home";
 
 export default function App() {
   return (
     <ReduxProvider store={reduxStore}>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
+      <HomeScreen />
     </ReduxProvider>
   );
 }

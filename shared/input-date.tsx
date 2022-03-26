@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import {
-  TextInput as RNTextInput,
-  View,
-  StyleSheet,
-  Text,
   Pressable,
   StyleProp,
+  StyleSheet,
+  Text,
+  View,
   ViewStyle,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPortByID, getShipByID } from "../../api/ticket.api";
 import { Port, Ship, Ticket } from "../../model";
 import { RootState } from "../../redux";
-import { setOrderStatus, setTicketID } from "../../redux/reducers/order";
+import { setTicketID } from "../../redux/reducers/order";
 import { searchTicket } from "../../redux/reducers/ticket";
 import { HomeStackParamList } from "../../router";
 import { TicketCard } from "../../shared";

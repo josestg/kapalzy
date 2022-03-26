@@ -86,7 +86,7 @@ export function PreviewSubScreen() {
           <Button
             title={"Lanjutkan"}
             onPress={() => {
-              navigation.navigate("HomeSummary");
+              navigation.navigate("HomeSummary", { ticket: params.ticket });
             }}
           />
         </View>

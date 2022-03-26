@@ -9,7 +9,9 @@ export type HomeStackParamList = {
   HomePreview: {
     ticket: Ticket;
   };
-  HomeSummary: undefined;
+  HomeSummary: {
+    ticket: Ticket;
+  };
 };
 
 export type RootTabParamList = {

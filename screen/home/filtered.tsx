@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPortByID, getShipByID } from "../../api/ticket.api";
 import { Port, Ship, Ticket } from "../../model";
 import { RootState } from "../../redux";
+import { setOrderStatus, setTicketID } from "../../redux/reducers/order";
 import { searchTicket } from "../../redux/reducers/ticket";
 import { HomeStackParamList } from "../../router";
 import { TicketCard } from "../../shared";
@@ -20,9 +21,7 @@ export const FilteredSubScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
   const dispatch = useDispatch();
 
-  const { state: tickets, searchResult } = useSelector(
-    (root: RootState) => root.ticket
-  );
+  const { searchResult } = useSelector((root: RootState) => root.ticket);
   const { derpature, arrival, derpatureDate } = useSelector(
     (root: RootState) => root.order
   );
@@ -37,7 +36,10 @@ export const FilteredSubScreen: React.FC = () => {
     );
   }, [dispatch, arrival, derpature, derpatureDate]);
 
-  const handleOnSelect = (ticket: Ticket) => {};
+  const handleOnSelect = (ticket: Ticket) => {
+    dispatch(setTicketID(ticket.id));
+    navigation.navigate("HomePreview", { ticket: ticket });
+  };
 
   return (
     <View style={styles.container}>

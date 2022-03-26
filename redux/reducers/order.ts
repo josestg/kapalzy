@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ClassType, Port } from "../../model";
+import { ClassType, OrderStatus, Port } from "../../model";
 
 interface State {
   derpature?: Port;
@@ -7,6 +7,8 @@ interface State {
   derpatureDate?: string;
   passengers: number;
   serviceClass: ClassType;
+  status: OrderStatus;
+  tiketId: string;
 }
 
 const initialState: State = {
@@ -15,6 +17,8 @@ const initialState: State = {
   derpatureDate: undefined,
   passengers: 0,
   serviceClass: "economy",
+  status: "pending",
+  tiketId: "",
 };
 
 const slices = createSlice({
@@ -36,6 +40,12 @@ const slices = createSlice({
     setServiceClass: (state, action: PayloadAction<ClassType>) => {
       state.serviceClass = action.payload;
     },
+    setOrderStatus: (state, action: PayloadAction<OrderStatus>) => {
+      state.status = action.payload;
+    },
+    setTicketID: (state, action: PayloadAction<string>) => {
+      state.tiketId = action.payload;
+    },
   },
 });
 
@@ -45,6 +55,8 @@ export const {
   setDerpatureDate,
   setPassenger,
   setServiceClass,
+  setOrderStatus,
+  setTicketID,
 } = slices.actions;
 
 export default slices.reducer;

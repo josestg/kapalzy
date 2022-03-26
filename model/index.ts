@@ -14,7 +14,7 @@ export const DefaultServiceClasses = {
 };
 
 export type ClassType = keyof typeof DefaultServiceClasses;
-export type OrderStatus = "completed" | "canceled";
+export type OrderStatus = "completed" | "canceled" | "pending" | "in-order";
 export type Gender = "male" | "female";
 
 export type ServiceClass = {

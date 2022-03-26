@@ -1,9 +1,14 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ClassType, DefaultServiceClasses } from "../../model";
 import { RootState } from "../../redux";
+import {
+  setDerpatureDate,
+  setPassenger,
+  setServiceClass,
+} from "../../redux/reducers/order";
 import { HomeStackParamList } from "../../router";
 import {
   Button,
@@ -24,6 +29,7 @@ export const FormSubScreen: React.FC = () => {
   const [numPassegers, setNumPassengers] = useState(1);
 
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
+  const dispatch = useDispatch();
 
   const { derpature, arrival } = useSelector((root: RootState) => root.order);
 
@@ -33,6 +39,27 @@ export const FormSubScreen: React.FC = () => {
 
   const handleOnSearch = (target: "derpature" | "arrival") => {
     navigation.navigate("HomeSearch", { target: target });
+  };
+
+  const handleOnChangePassenger = (updates: string) => {
+    const n = parseInt(updates);
+    if (!isNaN(n) && n > 1) {
+      setNumPassengers(n);
+      dispatch(setPassenger(n));
+    } else {
+      setNumPassengers(1);
+      dispatch(setPassenger(1));
+    }
+  };
+
+  const handleOnChangeDepatureDate = (date: Date) => {
+    setSelectedDate(date.toLocaleDateString());
+    dispatch(setDerpatureDate(date.toDateString()));
+  };
+
+  const handleOnChangeServiceClass = (updates: OptionItem) => {
+    setSelectedService(updates);
+    dispatch(setServiceClass(updates.value as ClassType));
   };
 
   const serviceClases = Object.keys(DefaultServiceClasses).map((key) => {
@@ -63,27 +90,20 @@ export const FormSubScreen: React.FC = () => {
           iconFactory={(focused) => <Icon focused={focused} name="ship" />}
           options={serviceClases}
           selected={selectedService}
-          onSelect={setSelectedService}
+          onSelect={(v) => handleOnChangeServiceClass(v)}
         />
         <InputDate
           label="Taggal Keberangkatan"
           mode="date"
           iconFactory={(focused) => <Icon focused={focused} name="ship" />}
-          onChange={(d) => setSelectedDate(d.toLocaleDateString())}
+          onChange={handleOnChangeDepatureDate}
           value={selectedDate}
         />
 
         <TextInput
           label="Jumlah Penumpang"
           iconFactory={(focused) => <Icon focused={focused} name="ship" />}
-          onChangeText={(v: string) => {
-            const n = parseInt(v);
-            if (!isNaN(n) && n > 1) {
-              setNumPassengers(n);
-            } else {
-              setNumPassengers(1);
-            }
-          }}
+          onChangeText={handleOnChangePassenger}
           value={numPassegers.toString()}
           mode="decimal-pad"
         />

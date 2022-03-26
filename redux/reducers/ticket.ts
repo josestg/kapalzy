@@ -13,9 +13,9 @@ const initialState: State<Ticket[]> = {
 };
 
 type SearchPayload = {
-  departurePortId: string;
-  arrivalPortId: string;
-  departureDate: string;
+  departurePortId?: string;
+  arrivalPortId?: string;
+  departureDate?: string;
 };
 
 const slices = createSlice({
@@ -32,15 +32,21 @@ const slices = createSlice({
       state.error = action.payload;
     },
     search: (state, action: PayloadAction<SearchPayload>) => {
+      const { arrivalPortId, departureDate, departurePortId } = action.payload;
+
       const filtered = state.state.filter((t) => {
-        const departurePortIdMatched =
-          t.departurePortId === action.payload.departurePortId;
+        const departurePortIdMatched = departurePortId
+          ? t.departurePortId === departurePortId
+          : true;
 
-        const arrivalPortIdMatched =
-          t.arrivalPortId === action.payload.arrivalPortId;
+        const arrivalPortIdMatched = arrivalPortId
+          ? t.arrivalPortId === arrivalPortId
+          : true;
 
-        const departureDateMatched =
-          t.departureDate === action.payload.departureDate;
+        const departureDateMatched = departureDate
+          ? new Date(t.departureDate).toDateString() ===
+            new Date(departureDate).toDateString()
+          : true;
 
         return (
           departureDateMatched && arrivalPortIdMatched && departurePortIdMatched
@@ -52,6 +58,11 @@ const slices = createSlice({
   },
 });
 
-export const { setMaster, setError, setLoading } = slices.actions;
+export const {
+  setMaster,
+  setError,
+  setLoading,
+  search: searchTicket,
+} = slices.actions;
 
 export default slices.reducer;

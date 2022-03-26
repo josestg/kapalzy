@@ -25,8 +25,8 @@ export const FormSubScreen: React.FC = () => {
 
   const { derpature, arrival } = useSelector((root: RootState) => root.order);
 
-  const handleCreateTicket = () => {
-    navigation.navigate("HomePreview");
+  const handleSearchTicket = () => {
+    navigation.navigate("HomeFiltered");
   };
 
   const handleOnSearch = (target: "derpature" | "arrival") => {
@@ -70,7 +70,7 @@ export const FormSubScreen: React.FC = () => {
           onChange={(d) => setSelectedDate(d.toLocaleDateString())}
           value={selectedDate}
         />
-        <Button title="Buat Tiket" onPress={() => handleCreateTicket()} />
+        <Button title="Cari Tiket" onPress={() => handleSearchTicket()} />
       </View>
     </View>
   );

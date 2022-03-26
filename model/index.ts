@@ -1,4 +1,19 @@
-export type ClassType = "economy" | "business" | "executive";
+export const DefaultServiceClasses = {
+  economy: {
+    id: "Ekonomi",
+    en: "Economy",
+  },
+  business: {
+    id: "Bisnis",
+    en: "Business",
+  },
+  executive: {
+    id: "Eksekutif",
+    en: "Executive",
+  },
+};
+
+export type ClassType = keyof typeof DefaultServiceClasses;
 export type OrderStatus = "completed" | "canceled";
 export type Gender = "male" | "female";
 

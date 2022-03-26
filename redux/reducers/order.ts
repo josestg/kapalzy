@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FetchableState, Port, Ticket } from "../../model";
+import { Port } from "../../model";
 
 interface State {
   derpature?: Port;

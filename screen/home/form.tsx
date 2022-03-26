@@ -1,11 +1,17 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
+import { ClassType, DefaultServiceClasses, ServiceClass } from "../../model";
 import { RootState } from "../../redux";
 import { HomeStackParamList } from "../../router";
-import { Button, Icon, DisableTextInput } from "../../shared";
+import { Button, Icon, DisableTextInput, InputOptions } from "../../shared";
+import { OptionItem } from "../../shared/input-option";
 
 export const FormSubScreen: React.FC = () => {
+  const [selectedService, setSelectedService] = useState<
+    OptionItem | undefined
+  >(undefined);
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
 
   const { derpature, arrival } = useSelector((root: RootState) => root.order);
@@ -17,6 +23,12 @@ export const FormSubScreen: React.FC = () => {
   const handleOnSearch = (target: "derpature" | "arrival") => {
     navigation.navigate("HomeSearch", { target: target });
   };
+
+  const serviceClases = Object.keys(DefaultServiceClasses).map((key) => {
+    const label = DefaultServiceClasses[key as ClassType].id;
+    const value = key;
+    return { label, value };
+  });
 
   return (
     <View style={styles.container}>
@@ -34,6 +46,13 @@ export const FormSubScreen: React.FC = () => {
           iconFactory={(focused) => <Icon focused={focused} name="ship" />}
           onPress={() => handleOnSearch("arrival")}
           value={arrival ? arrival.name : ""}
+        />
+        <InputOptions
+          label="Layanan"
+          iconFactory={(focused) => <Icon focused={focused} name="ship" />}
+          options={serviceClases}
+          selected={selectedService}
+          onSelect={setSelectedService}
         />
         <Button title="Buat Tiket" onPress={() => handleCreateTicket()} />
       </View>

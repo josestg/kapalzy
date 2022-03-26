@@ -2,15 +2,16 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
-import { ClassType, DefaultServiceClasses, ServiceClass } from "../../model";
+import { ClassType, DefaultServiceClasses } from "../../model";
 import { RootState } from "../../redux";
 import { HomeStackParamList } from "../../router";
 import {
   Button,
-  Icon,
   DisableTextInput,
-  InputOptions,
+  Icon,
   InputDate,
+  InputOptions,
+  TextInput,
 } from "../../shared";
 import { OptionItem } from "../../shared/input-option";
 
@@ -20,6 +21,7 @@ export const FormSubScreen: React.FC = () => {
   >(undefined);
 
   const [selectedDate, setSelectedDate] = useState<string>("");
+  const [numPassegers, setNumPassengers] = useState(1);
 
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
 
@@ -70,6 +72,22 @@ export const FormSubScreen: React.FC = () => {
           onChange={(d) => setSelectedDate(d.toLocaleDateString())}
           value={selectedDate}
         />
+
+        <TextInput
+          label="Jumlah Penumpang"
+          iconFactory={(focused) => <Icon focused={focused} name="ship" />}
+          onChangeText={(v: string) => {
+            const n = parseInt(v);
+            if (!isNaN(n) && n > 1) {
+              setNumPassengers(n);
+            } else {
+              setNumPassengers(1);
+            }
+          }}
+          value={numPassegers.toString()}
+          mode="decimal-pad"
+        />
+
         <Button title="Cari Tiket" onPress={() => handleSearchTicket()} />
       </View>
     </View>

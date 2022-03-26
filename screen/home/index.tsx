@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { HomeStackParamList } from "../../router";
 import { FormSubScreen } from "./form";
-import { PreviewubScreen } from "./preview";
+import { PreviewSubScreen } from "./preview";
 import { SummarySubScreen } from "./summary";
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -11,7 +11,7 @@ export const HomeScreen: React.FC = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={"HomeForm"} component={FormSubScreen} />
-      <Stack.Screen name={"HomePreview"} component={PreviewubScreen} />
+      <Stack.Screen name={"HomePreview"} component={PreviewSubScreen} />
       <Stack.Screen name={"HomeSummary"} component={SummarySubScreen} />
     </Stack.Navigator>
   );

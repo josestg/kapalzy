@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { HomeStackParamList } from "../../router";
 import { Button } from "../../shared";
 
-export const PreviewubScreen: React.FC = () => {
+export const PreviewSubScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
 
   const handleOnPrev = () => {

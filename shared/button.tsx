@@ -11,7 +11,7 @@ import {
 interface ButtonProps {
   onPress: (e: GestureResponderEvent) => void;
   title: string;
-  style: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const Button: React.FC<ButtonProps> = ({ onPress, title, style }) => {

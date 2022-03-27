@@ -28,15 +28,15 @@ export const Icon: React.FC<IconProps> = ({ name, focused, size }) => {
   const iconSize = size || 24;
 
   switch (name) {
-    case ICON.ship:
-    case ICON.destination:
-    case ICON.sex:
+    case "ship":
+    case "destination":
+    case "sex":
       return (
         <Fontisto name={ICON[name] as any} size={iconSize} color={color} />
       );
-    case ICON.service:
-    case ICON.date:
-    case ICON.time:
+    case "service":
+    case "date":
+    case "destination":
       return (
         <MaterialCommunityIcons
           name={ICON[name] as any}
@@ -44,7 +44,7 @@ export const Icon: React.FC<IconProps> = ({ name, focused, size }) => {
           color={color}
         />
       );
-    case ICON.user:
+    case "user":
       return (
         <FontAwesome name={ICON[name] as any} size={iconSize} color={color} />
       );

@@ -28,7 +28,7 @@ export const TicketCard: React.FC<TicketCardProps> = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>{derpature.name}</Text>
-        <Icon name="ship" focused={false} />
+        <Icon name="destination" focused={false} />
         <Text style={styles.headerText}>{arrival.name}</Text>
       </View>
       <View style={styles.box}>

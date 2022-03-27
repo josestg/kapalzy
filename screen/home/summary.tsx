@@ -108,11 +108,11 @@ export function SummarySubScreen() {
             placeholder="Nama anda..."
             onChangeText={setName}
             value={name}
-            iconFactory={(focused) => <Icon name={"ship"} focused={focused} />}
+            iconFactory={(focused) => <Icon name={"user"} focused={focused} />}
           />
           <InputOptions
             label="Jenis Kelamin"
-            iconFactory={(focused) => <Icon name={"ship"} focused={focused} />}
+            iconFactory={(focused) => <Icon name={"sex"} focused={focused} />}
             selected={gender}
             onSelect={(selected) => setGender(selected)}
             options={genders}
@@ -122,7 +122,7 @@ export function SummarySubScreen() {
             placeholder="Umur anda..."
             mode="decimal-pad"
             onChangeText={(text) => setAge(Number(text))}
-            iconFactory={(focused) => <Icon name={"ship"} focused={focused} />}
+            iconFactory={(focused) => <Icon name={"date"} focused={focused} />}
           />
           <View
             style={{

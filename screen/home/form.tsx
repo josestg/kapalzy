@@ -89,7 +89,7 @@ export const FormSubScreen: React.FC = () => {
         />
         <InputOptions
           label="Layanan"
-          iconFactory={(focused) => <Icon focused={focused} name="ship" />}
+          iconFactory={(focused) => <Icon focused={focused} name="service" />}
           options={serviceClases}
           selected={selectedService}
           onSelect={(v) => handleOnChangeServiceClass(v)}
@@ -97,14 +97,14 @@ export const FormSubScreen: React.FC = () => {
         <InputDate
           label="Taggal Keberangkatan"
           mode="date"
-          iconFactory={(focused) => <Icon focused={focused} name="ship" />}
+          iconFactory={(focused) => <Icon focused={focused} name="date" />}
           onChange={handleOnChangeDepatureDate}
           value={selectedDate}
         />
 
         <TextInput
           label="Jumlah Penumpang"
-          iconFactory={(focused) => <Icon focused={focused} name="ship" />}
+          iconFactory={(focused) => <Icon focused={focused} name="user" />}
           onChangeText={handleOnChangePassenger}
           value={numPassegers.toString()}
           mode="decimal-pad"

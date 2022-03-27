@@ -14,6 +14,9 @@ const ICON = {
   user: "user",
   sex: "intersex",
   ticket: "ticket-confirmation",
+  search: "book-search",
+  phone: "phone",
+  cart: "cart",
 };
 
 type IconType = keyof typeof ICON;
@@ -25,7 +28,7 @@ interface IconProps {
 }
 
 export const Icon: React.FC<IconProps> = ({ name, focused, size }) => {
-  const color = focused ? "green" : "black";
+  const color = focused ? "#63B3ED" : "black";
   const iconSize = size || 24;
 
   switch (name) {
@@ -36,9 +39,12 @@ export const Icon: React.FC<IconProps> = ({ name, focused, size }) => {
         <Fontisto name={ICON[name] as any} size={iconSize} color={color} />
       );
     case "service":
+    case "cart":
     case "date":
     case "destination":
     case "ticket":
+    case "search":
+    case "phone":
       return (
         <MaterialCommunityIcons
           name={ICON[name] as any}

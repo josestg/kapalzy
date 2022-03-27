@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Provider as ReduxProvider } from "react-redux";
 import { getIconName } from "./helper/icons";
 import { ScreenNameKeys } from "./model";

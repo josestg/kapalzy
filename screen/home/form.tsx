@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { ClassType, DefaultServiceClasses } from "../../model";
 import { RootState } from "../../redux";
@@ -70,7 +70,9 @@ export const FormSubScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.background} />
       <View style={styles.form}>
+        <Text style={styles.hero}>Kapalzy</Text>
         <DisableTextInput
           placeholder="pilih pelabuhan asal"
           label="Asal"
@@ -120,10 +122,41 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 16,
+  },
+  background: {
+    display: "flex",
+    flex: 1,
+    backgroundColor: "#1A202C",
+    width: "100%",
+    position: "absolute",
+    top: 0,
+    right: 0,
+    height: "50%",
+    borderBottomEndRadius: 60,
+    borderBottomLeftRadius: 60,
+  },
+
+  hero: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#000",
+    marginBottom: 18,
+    textAlign: "center",
   },
   form: {
-    width: "100%",
+    marginVertical: 40,
+    width: 360,
     display: "flex",
+    backgroundColor: "#fff",
+    padding: 24,
+    borderRadius: 16,
+    shadowColor: "#1A202C",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 2,
   },
 });

@@ -13,6 +13,7 @@ const ICON = {
   destination: "arrow-right",
   user: "user",
   sex: "intersex",
+  ticket: "ticket-confirmation",
 };
 
 type IconType = keyof typeof ICON;
@@ -37,6 +38,7 @@ export const Icon: React.FC<IconProps> = ({ name, focused, size }) => {
     case "service":
     case "date":
     case "destination":
+    case "ticket":
       return (
         <MaterialCommunityIcons
           name={ICON[name] as any}

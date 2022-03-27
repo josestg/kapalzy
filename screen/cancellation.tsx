@@ -1,13 +1,30 @@
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useSelector } from "react-redux";
 import { getPortByID, getShipByID } from "../api/ticket.api";
 import { Port, Ship, Ticket } from "../model";
 import { RootState } from "../redux";
-import { TicketCard } from "../shared";
+import { Icon, TicketCard } from "../shared";
 
 export const CancellationScreen: React.FC = () => {
   const { canceled } = useSelector((root: RootState) => root.ticket);
+
+  if (canceled.length === 0) {
+    return (
+      <View style={styles.notFound}>
+        <Icon focused name="ticket" size={80} />
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          Tidak ada yang dibatalkan
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -72,6 +89,13 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     padding: 16,
+  },
+  notFound: {
+    display: "flex",
+    flex: 1,
+    padding: 16,
+    justifyContent: "center",
+    alignItems: "center",
   },
   form: {
     width: "100%",

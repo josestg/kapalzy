@@ -1,28 +1,43 @@
-import db from "../db";
 import { Port, Ship, Ticket } from "../model";
 
-export function fetchAllTicket(): Promise<Ticket[]> {
-  return Promise.resolve(db.tickets);
+const baseURL = "https://kapalzy-api.herokuapp.com";
+
+export async function fetchAllTicket(): Promise<Ticket[]> {
+  try {
+    const res = await fetch(`${baseURL}/tickets`);
+    const json = await res.json();
+    return json as Ticket[];
+  } catch (error) {
+    return [];
+  }
 }
 
-export function getPortByID(id: string): Promise<Port> {
-  const found = db.ports.find((p) => p.id === id);
-  if (!found) {
+export async function getPortByID(id: string): Promise<Port> {
+  try {
+    const res = await fetch(`${baseURL}/ports/{id}`);
+    const json = await res.json();
+    return json as Port;
+  } catch (error) {
     throw new Error("port not found");
   }
-
-  return Promise.resolve(found);
 }
 
-export function getShipByID(id: string): Promise<Ship> {
-  const found = db.ships.find((p) => p.id === id);
-  if (!found) {
+export async function getShipByID(id: string): Promise<Ship> {
+  try {
+    const res = await fetch(`${baseURL}/ships/{id}`);
+    const json = await res.json();
+    return json as Ship;
+  } catch (error) {
     throw new Error("ship not found");
   }
-
-  return Promise.resolve(found);
 }
 
-export function fetchAllPort(): Promise<Port[]> {
-  return Promise.resolve(db.ports);
+export async function fetchAllPort(): Promise<Port[]> {
+  try {
+    const res = await fetch(`${baseURL}/ports`);
+    const json = await res.json();
+    return json as Port[];
+  } catch (error) {
+    return [];
+  }
 }
